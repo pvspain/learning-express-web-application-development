@@ -2,6 +2,18 @@
 
 [Course][1]
 
+## Index
+
+- [PacktPub: Learning Express Web Application Development](#packtpub-learning-express-web-application-development)
+    - [Index](#index)
+    - [Introduction](#introduction)
+    - [Install Express.js and command-line tools](#install-expressjs-and-command-line-tools)
+    - [Bootstrapping Your First App](#bootstrapping-your-first-app)
+    - [Structure of an Express.js App](#structure-of-an-expressjs-app)
+    - [Introducing the Jade Template Engine](#introducing-the-jade-template-engine)
+  
+## Introduction
+
 This course is a few years old now (December 2014)
 
 I am using current version of NodeJS and [Yarn][2] package manager instead of **npm**
@@ -67,6 +79,8 @@ Initialise project `.gitignore` from NodeJS [template][5]
     ```  
 - `views`
     - application views rendered by Jade engine
+
+## Introducing the Jade Template Engine
 
 [1]: https://www.packtpub.com/mapt/video/video/9781783989881
 [2]: https://yarnpkg.com/en/
