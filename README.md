@@ -1,9 +1,11 @@
-# PacktPub m: Learning Express Web Application Development
+# PacktPub: Learning Express Web Application Development
 
 [Course][1]
 
 This course is a few years old now (December 2014)
+
 I am using current version of NodeJS and [Yarn][2] package manager instead of **npm**
+
 My development environment is Ubuntu 16.04.5 LTS
 
 ## Install Express.js and command-line tools
