@@ -7,7 +7,7 @@ router.get('/', function(req, res) {
 });
 
 router.post('/', function(req, res) {
-    res.semd('POST worked!');
+    res.send('POST worked!');
 });
 
 router.route('/:contact_id')
