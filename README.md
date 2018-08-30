@@ -20,6 +20,7 @@
   - [Planning Our Application](#planning-our-application)
     - [Planning the Structure of Our Application](#planning-the-structure-of-our-application)
     - [Installing the Necessary Modules](#installing-the-necessary-modules)
+    - [Creating Our Endpoints](#creating-our-endpoints)
   - [Creating Our User Interface](#creating-our-user-interface)
   - [Automated Testing](#automated-testing)
   - [Storing Data in MongoDB](#storing-data-in-mongodb)
@@ -166,12 +167,35 @@ Initialise project `.gitignore` from NodeJS [template][5]
   - Mocking: Sinon.js
   - Helper util: SuperTest
 
-### Installing the Necessary Modules 
+### Installing the Necessary Modules
 
 ```
 yarn add --dev chai karma mocha sinon supertest
 yarn add mongoose passport
 ```
+
+### Creating Our Endpoints
+
+Express doesn't restart webserver for server-side code changes.
+Adding `supervisor` to dev dependencies restarts webserver when source changes detected.
+
+```
+yarn add --dev supervisor
+```
+
+We also adjust `start` script in `package.json` to use `supervisor`:
+
+```
+"scripts": {
+    "start": "node node_modules/.bin/supervisor bin/www"
+  },
+```
+
+Remove `users` routes created by default by Express.
+
+Add routes for `/contacts` in `routes/contacts.js`
+
+Wire up new routes in `app.js`
 
 ## Creating Our User Interface
 
