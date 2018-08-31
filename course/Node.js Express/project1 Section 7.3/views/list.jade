@@ -1,0 +1,28 @@
+extends layout
+
+block content
+  h1 Your contacts
+  p Here is a list of your contacts.
+  a#delete.btn.btn-default(href="#") Delete 
+  a#add.btn.btn-default(href="/contacts/add") Add new
+  table.table
+    thead
+      tr
+        th
+        th Name
+        th Nickname
+        th Email
+    tbody
+      if !contacts
+        tr
+        td(colspan=4) Sorry, there are no contacts
+      each contact in contacts
+        tr
+          td
+            input(type="checkbox", id=contact.id)
+          td
+            a(href="/contacts/#{contact.id}") #{contact.name}
+            |  #{contact.job}
+          td #{contact.nickname}
+          td
+            a(href="mailto:#{contact.email}") #{contact.email}

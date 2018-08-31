@@ -1,0 +1,14 @@
+extends layout
+
+block content
+  h1= title
+  p Welcome to #{title}
+  a(href="/contacts").btn.btn-default Our contacts app
+  
+  if (user)
+    p You are logged in as #{user.username}
+      a(href="/auth/logout")  logout
+  else
+    p
+      a(href="/auth") Please login
+  p Total views: #{views}

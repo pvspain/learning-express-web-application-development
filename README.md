@@ -22,6 +22,7 @@
     - [Installing the Necessary Modules](#installing-the-necessary-modules)
     - [Creating Our Endpoints](#creating-our-endpoints)
   - [Creating Our User Interface](#creating-our-user-interface)
+    - [Creating Our Application’s User Interface](#creating-our-applications-user-interface)
   - [Automated Testing](#automated-testing)
   - [Storing Data in MongoDB](#storing-data-in-mongodb)
   - [Auhenticating Users](#auhenticating-users)
@@ -198,6 +199,8 @@ Add routes for `/contacts` in `routes/contacts.js`
 Wire up new routes in `app.js`
 
 ## Creating Our User Interface
+
+### Creating Our Application’s User Interface
 
 ## Automated Testing
 
