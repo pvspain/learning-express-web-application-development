@@ -1,22 +1,25 @@
 var express = require('express');
 var router = express.Router();
 
-/* GET contacts page. */
 router.get('/', function(req, res) {
-  res.send('GET worked!');
+  res.render('list', {});
 });
 
 router.post('/', function(req, res) {
     res.send('POST worked!');
 });
 
-router.route('/:contact_id')
+router.get('/add', function(req, res) {
+    res.render('add', {});
+  });
+  
+  router.route('/:contact_id')
 .all(function(req, res, next) {
     contact_id = req.params.contact_id;
     next();
 })
 .get(function(req, res) {
-    res.send('GET for contact '+contact_id)
+    res.render('edit', {})
 })
 .post(function(req, res) {
     res.send('POST for contact '+contact_id)

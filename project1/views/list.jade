@@ -1,0 +1,44 @@
+extend layout
+
+block content
+  h1 Your contacts
+  p Here is a list of your contacts.
+  p
+    a#delete.btn.btn-default(hrer="#") Delete
+    |  
+    a#add.btn.btn-default(href="/contacts/add") Add new
+  table.table
+    thead
+      tr
+        th
+        th Name
+        th Nickname
+        th Email
+    tbody
+      tr
+        td
+          input(type="checkbox", id="1")
+        td
+          a(href="/contacts/1") Joe Smith
+          |  Plumber
+        td Joe
+        td
+          a(href="mailto:joe@gmail.com") joe@gmail.com
+      tr
+        td
+          input(type="checkbox", id="2")
+        td
+          a(href="/contacts/2") Carla Ricci
+          |  Principal Division Producer
+        td Carla
+        td
+          a(href="mailto:cricci@gmail.com") cricci@gmail.com
+      tr
+        td
+          input(type="checkbox", id="1")
+        td
+          a(href="/contacts/1") Dragan Burns
+          |  Seminar Factors Producer
+        td Drago
+        td
+          a(href="mailto:itburns@outlook.com") itburns@outlook.com

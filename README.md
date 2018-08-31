@@ -202,6 +202,10 @@ Wire up new routes in `app.js`
 
 ### Creating Our Application’s User Interface
 
+Add `bootstrap*.css` files as imports in `public\stylesheets\style.stl`
+
+The `|` character in Jade is a line-continuation character for the current tag - whitespace is significant in Jade, like Python.
+ 
 ## Automated Testing
 
 ## Storing Data in MongoDB
