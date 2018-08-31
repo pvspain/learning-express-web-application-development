@@ -4,6 +4,7 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var stylus = require('stylus');
+var bootstrap = require('bootstrap');
 
 var routes = require('./routes/index');
 var contacts = require('./routes/contacts');

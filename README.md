@@ -23,6 +23,7 @@
     - [Creating Our Endpoints](#creating-our-endpoints)
   - [Creating Our User Interface](#creating-our-user-interface)
     - [Creating Our Application’s User Interface](#creating-our-applications-user-interface)
+      - [Adding bootstrap via `yarn`](#adding-bootstrap-via-yarn)
   - [Automated Testing](#automated-testing)
   - [Storing Data in MongoDB](#storing-data-in-mongodb)
   - [Auhenticating Users](#auhenticating-users)
@@ -202,10 +203,43 @@ Wire up new routes in `app.js`
 
 ### Creating Our Application’s User Interface
 
+The `|` character in Jade is a line-continuation character for the current tag - whitespace is significant in Jade, like Python.
+
+[Download][12] bootstrap files  
 Add `bootstrap*.css` files as imports in `public\stylesheets\style.stl`
 
-The `|` character in Jade is a line-continuation character for the current tag - whitespace is significant in Jade, like Python.
- 
+#### Adding bootstrap via `yarn`
+
+[Processing peer dependencies for `bootstrap` npm module][11]
+
+```[Bash]
+yarn add bootstrap
+yarn global add install-peerdeps
+install-peerdeps bootstrap
+
+# On yarn restart, bootstrap errors:
+
+Starting child process with 'node bin/www'
+/home/paul/git/github/pvspain/learning-express-web-application-development/project1/node_modules/bootstrap/dist/js/bootstrap.js:122
+      $$$1.fn.emulateTransitionEnd = transitionEndEmulator;
+                                   ^
+
+TypeError: Cannot set property 'emulateTransitionEnd' of undefined
+    at setTransitionEndSupport (/home/paul/git/github/pvspain/learning-express-web-application-development/project1/node_modules/bootstrap/dist/js/bootstrap.js:122:36)
+    at /home/paul/git/github/pvspain/learning-express-web-application-development/project1/node_modules/bootstrap/dist/js/bootstrap.js:199:5
+    at /home/paul/git/github/pvspain/learning-express-web-application-development/project1/node_modules/bootstrap/dist/js/bootstrap.js:201:4
+    at /home/paul/git/github/pvspain/learning-express-web-application-development/project1/node_modules/bootstrap/dist/js/bootstrap.js:7:66
+    at Object.<anonymous> (/home/paul/git/github/pvspain/learning-express-web-application-development/project1/node_modules/bootstrap/dist/js/bootstrap.js:10:2)
+    at Module._compile (module.js:652:30)
+    at Object.Module._extensions..js (module.js:663:10)
+    at Module.load (module.js:565:32)
+    at tryModuleLoad (module.js:505:12)
+    at Function.Module._load (module.js:497:3)
+Program node bin/www exited with code 1
+
+# Reverting to explicitly importing bootstrap css to project...
+```
+
 ## Automated Testing
 
 ## Storing Data in MongoDB
@@ -227,3 +261,5 @@ The `|` character in Jade is a line-continuation character for the current tag -
 [8]: https://getbootstrap.com/
 [9]: https://getbootstrap.com/docs/4.1/getting-started/introduction/
 [10]: http://lesscss.org/
+[11]: https://github.com/yarnpkg/yarn/issues/1503
+[12]: https://getbootstrap.com/
