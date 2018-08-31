@@ -238,6 +238,8 @@ TypeError: Cannot set property 'emulateTransitionEnd' of undefined
 Program node bin/www exited with code 1
 
 # Reverting to explicitly importing bootstrap css to project...
+
+yarn remove bootstrap popper.js jquery
 ```
 
 ## Automated Testing
