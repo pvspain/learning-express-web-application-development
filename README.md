@@ -24,6 +24,7 @@
   - [Creating Our User Interface](#creating-our-user-interface)
     - [Creating Our Application’s User Interface](#creating-our-applications-user-interface)
       - [Adding bootstrap via `yarn`](#adding-bootstrap-via-yarn)
+    - [Displaying Dynamic Data with Jade](#displaying-dynamic-data-with-jade)
   - [Automated Testing](#automated-testing)
   - [Storing Data in MongoDB](#storing-data-in-mongodb)
   - [Auhenticating Users](#auhenticating-users)
@@ -242,6 +243,21 @@ Program node bin/www exited with code 1
 yarn remove bootstrap popper.js jquery
 ```
 
+### Displaying Dynamic Data with Jade
+
+`lodash.js` is a JS utility library - a [superset][14] of `underscore.js`. Many of it's functions are now [included][13] in ES6
+```
+yarn add lodash
+yarn add method-override
+```
+
+Hacks needed to deal with PUT and DELETE requests, since browsers only support GET and POST HTTP verbs.
+
+- PUT managed by `method-override` Node module, and form action argument in `views/edit.jade`: 
+  - `action="/contacts/#{contact.id}?_method=put"`
+- DELETE managed by adding `jquery-min.js` and `main.js` (to `public/javascripts`) and including them in `views/layout.jade`
+  - `main.js` intercepts all clicks on DELETE button and does an Ajax call to server to delete all checked contacts 
+
 ## Automated Testing
 
 ## Storing Data in MongoDB
@@ -251,7 +267,6 @@ yarn remove bootstrap popper.js jquery
 ## Deployment Options
 
 ## Final Thoughts
-
 
 [1]: https://www.packtpub.com/mapt/video/video/9781783989881
 [2]: https://yarnpkg.com/en/
@@ -265,3 +280,5 @@ yarn remove bootstrap popper.js jquery
 [10]: http://lesscss.org/
 [11]: https://github.com/yarnpkg/yarn/issues/1503
 [12]: https://getbootstrap.com/
+[13]: https://github.com/you-dont-need/You-Dont-Need-Lodash-Underscore
+[14]: https://web.archive.org/web/20180101093627/http://kitcambridge.be/blog/say-hello-to-lo-dash/
