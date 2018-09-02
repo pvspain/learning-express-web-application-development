@@ -245,7 +245,7 @@ yarn remove bootstrap popper.js jquery
 
 ### Displaying Dynamic Data with Jade
 
-`lodash.js` is a JS utility library - a [superset][14] of `underscore.js`. Many of it's functions are now [included][13] in ES6
+[`lodash.js`][14] is a JS utility library - a [superset][15] of `underscore.js`. Many of it's functions are now [included][13] in ES6
 ```
 yarn add lodash
 yarn add method-override
@@ -282,3 +282,4 @@ Hacks needed to deal with PUT and DELETE requests, since browsers only support G
 [12]: https://getbootstrap.com/
 [13]: https://github.com/you-dont-need/You-Dont-Need-Lodash-Underscore
 [14]: https://web.archive.org/web/20180101093627/http://kitcambridge.be/blog/say-hello-to-lo-dash/
+[15]: https://stackoverflow.com/questions/13789618/differences-between-lodash-and-underscore
