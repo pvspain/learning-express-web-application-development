@@ -34,6 +34,7 @@
     - [Setting Up Test Tools](#setting-up-test-tools)
     - [Server-side JS Testing Versus Client-side JS Testing](#server-side-js-testing-versus-client-side-js-testing)
   - [Storing Data in MongoDB](#storing-data-in-mongodb)
+    - [Installing and Configuring MongoDB](#installing-and-configuring-mongodb)
   - [Auhenticating Users](#auhenticating-users)
   - [Deployment Options](#deployment-options)
   - [Final Thoughts](#final-thoughts)
@@ -399,6 +400,20 @@ yarn add --dev karma-chai karma-sinon
 
 ## Storing Data in MongoDB
 
+### Installing and Configuring MongoDB
+
+- [Install MongoDB][17]
+
+```[Bash]
+sudo apt update
+sudo apt install -y mongodb
+# Get status
+sudo systemctl status mongodb
+# Further validation
+mongo --eval 'db.runCommand({ connectionStatus: 1 })'
+```
+
+
 ## Auhenticating Users
 
 ## Deployment Options
@@ -421,3 +436,4 @@ yarn add --dev karma-chai karma-sinon
 [14]: https://web.archive.org/web/20180101093627/http://kitcambridge.be/blog/say-hello-to-lo-dash/
 [15]: https://stackoverflow.com/questions/13789618/differences-between-lodash-and-underscore
 [16]: http://www.chaijs.com/
+[17]: https://www.digitalocean.com/community/tutorials/how-to-install-mongodb-on-ubuntu-18-04
