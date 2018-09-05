@@ -32,6 +32,7 @@
       - [TDD/BDD](#tddbdd)
       - [Test Client](#test-client)
     - [Setting Up Test Tools](#setting-up-test-tools)
+    - [Server-side JS Testing Versus Client-side JS Testing](#server-side-js-testing-versus-client-side-js-testing)
   - [Storing Data in MongoDB](#storing-data-in-mongodb)
   - [Auhenticating Users](#auhenticating-users)
   - [Deployment Options](#deployment-options)
@@ -319,6 +320,75 @@ Hacks needed to deal with PUT and DELETE requests, since browsers only support G
   - mocking library
 - Supertest
   - test client
+
+- Create top-lvel folder `test` in project for tests
+  
+### Server-side JS Testing Versus Client-side JS Testing
+ 
+- Client-side testing assumes the browser and its DOM are present.
+- **Karma**, launches a test environment, loads a browser and loads environment inside browser
+-  **Karma** needs intialisation.
+  
+```[Bash]
+./node_modules/karma/bin/karma init
+
+Which testing framework do you want to use ?
+Press tab to list possible options. Enter to move to the next question.
+> mocha
+
+Do you want to use Require.js ?
+This will add Require.js plugin.
+Press tab to list possible options. Enter to move to the next question.
+> no
+
+Do you want to capture any browsers automatically ?
+Press tab to list possible options. Enter empty string to move to the next question.
+> Chrome
+>
+
+What is the location of your source and test files ?
+You can use glob patterns, eg. "js/*.js" or "test/**/*Spec.js".
+Enter empty string to move to the next question.
+> public/javascripts/**/*.js
+> browser-tests/**/*.js
+05 09 2018 18:13:34.188:WARN [init]: There is no file matching this pattern.
+
+>
+
+Should any of the files included by the previous patterns be excluded ?
+You can use glob patterns, eg. "**/*.swp".
+Enter empty string to move to the next question.
+>
+
+Do you want Karma to watch all the files and run the tests on change ?
+Press tab to list possible options.
+> yes
+
+
+Config file generated at "/home/paul/git/github/pvspain/learning-express-web-application-development/project1/karma.conf.js".
+```
+
+- Create `browser-tests` folder anr run **Karma**
+
+```[Bash]
+mkdir browser-tests
+./node_modules/karma/bin/karma start --single-run
+```
+
+- Add `karma` entry to `package.json` to simplify running tests
+
+```[Bash]
+  "scripts": {
+    ...
+    "karma": "./node_modules/karma/bin/karma start --single-run"
+  },
+```
+
+- Execute
+
+```[Bash]
+yarn run karma
+```
 
 ## Storing Data in MongoDB
 
