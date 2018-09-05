@@ -36,6 +36,7 @@
   - [Storing Data in MongoDB](#storing-data-in-mongodb)
     - [Installing and Configuring MongoDB](#installing-and-configuring-mongodb)
     - [Wiring Up Mongoose.js](#wiring-up-mongoosejs)
+    - [Creating Our Models](#creating-our-models)
   - [Auhenticating Users](#auhenticating-users)
   - [Deployment Options](#deployment-options)
   - [Final Thoughts](#final-thoughts)
@@ -435,6 +436,19 @@ yarn add --dev karma-chai karma-sinon
       // we're connected!
     });
     ```
+
+### Creating Our Models
+
+- **MongoDB** is a *document* database.
+- **Mongoose** allows us to define **schemas**.
+- Schemas:
+  - have helper functions to access data
+  - can be defined anywhere, but typically in `models` folder under root of project
+    ```[Bash]
+    mkdir models
+    ```
+  - one schema per file
+  - file name matches schema
 
 ## Auhenticating Users
 
