@@ -31,6 +31,7 @@
       - [Microtesing (Unit testing)](#microtesing-unit-testing)
       - [TDD/BDD](#tddbdd)
       - [Test Client](#test-client)
+    - [Setting Up Test Tools](#setting-up-test-tools)
   - [Storing Data in MongoDB](#storing-data-in-mongodb)
   - [Auhenticating Users](#auhenticating-users)
   - [Deployment Options](#deployment-options)
@@ -304,7 +305,21 @@ Hacks needed to deal with PUT and DELETE requests, since browsers only support G
 - In our app, it would test the full server side stack, including middleware
 - It does not launch the app, instead merely runs the code in the same way Nodejs would, but with some hooks for testing
 - It won't render the app and send it to a browser, but the app would not know the difference
-  
+
+### Setting Up Test Tools
+
+- Karma
+  - test runner for client-side code
+- Mocha
+  - test framework
+- [Chai][16]
+  - assertion library
+    - note `ok()` - test for "truthiness"
+- Sinon
+  - mocking library
+- Supertest
+  - test client
+
 ## Storing Data in MongoDB
 
 ## Auhenticating Users
@@ -328,3 +343,4 @@ Hacks needed to deal with PUT and DELETE requests, since browsers only support G
 [13]: https://github.com/you-dont-need/You-Dont-Need-Lodash-Underscore
 [14]: https://web.archive.org/web/20180101093627/http://kitcambridge.be/blog/say-hello-to-lo-dash/
 [15]: https://stackoverflow.com/questions/13789618/differences-between-lodash-and-underscore
+[16]: http://www.chaijs.com/
