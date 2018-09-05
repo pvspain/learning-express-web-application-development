@@ -390,6 +390,12 @@ mkdir browser-tests
 yarn run karma
 ```
 
+- Add `chai` and `sinon` to `karma.conf.js` as additional frameworks
+
+```[Bash]
+yarn add --dev karma-chai karma-sinon
+```
+  
 ## Storing Data in MongoDB
 
 ## Auhenticating Users
