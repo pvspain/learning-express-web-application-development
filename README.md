@@ -82,9 +82,9 @@ Initialise project `.gitignore` from NodeJS [template][5]
 - `package.json`
   - common to all NodeJS projects
   - holds project metadata
-  - defines _scripts_ 
+  - defines _scripts_
     - executed as arguments to package manager
-      ```
+      ```[Bash]
       yarn start
       ```
   - lists dependencies
@@ -104,7 +104,7 @@ Initialise project `.gitignore` from NodeJS [template][5]
 - `routes`
   - dynamic routes for application
   - route mappings are wired up in `app.js` ...
-    ```
+    ```[Bash]
     var indexRouter = require('./routes/index');
     var usersRouter = require('./routes/users');
     ...
@@ -142,7 +142,7 @@ Initialise project `.gitignore` from NodeJS [template][5]
 - HTML template engines
   - Mustache
   - Handlebars (superset of handlebars)
-    ```
+    ```[Bash]
     yarn add express-handlebars
     ```
     - change view engine ienginesenginesn `app.js`
@@ -153,7 +153,7 @@ Initialise project `.gitignore` from NodeJS [template][5]
   - [Less][10]
     - very similar to Sass
     - written in JavaScript
-    ```
+    ```[Bash]
     express --css less
     ```
 
@@ -179,7 +179,7 @@ Initialise project `.gitignore` from NodeJS [template][5]
 
 ### Installing the Necessary Modules
 
-```
+```[Bash]
 yarn add --dev chai karma mocha sinon supertest
 yarn add mongoose passport
 ```
@@ -189,13 +189,13 @@ yarn add mongoose passport
 Express doesn't restart webserver for server-side code changes.
 Adding `supervisor` to dev dependencies restarts webserver when source changes detected.
 
-```
+```[Bash]
 yarn add --dev supervisor
 ```
 
 We also adjust `start` script in `package.json` to use `supervisor`:
 
-```
+```[Bash]
 "scripts": {
     "start": "node node_modules/.bin/supervisor bin/www"
   },
@@ -253,17 +253,18 @@ yarn remove bootstrap popper.js jquery
 ### Displaying Dynamic Data with Jade
 
 [`lodash.js`][14] is a JS utility library - a [superset][15] of `underscore.js`. Many of it's functions are now [included][13] in ES6
-```
+
+```[Bash]
 yarn add lodash
 yarn add method-override
 ```
 
 Hacks needed to deal with PUT and DELETE requests, since browsers only support GET and POST HTTP verbs.
 
-- PUT managed by `method-override` Node module, and form action argument in `views/edit.jade`: 
+- PUT managed by `method-override` Node module, and form action argument in `views/edit.jade`:
   - `action="/contacts/#{contact.id}?_method=put"`
 - DELETE managed by adding `jquery-min.js` and `main.js` (to `public/javascripts`) and including them in `views/layout.jade`
-  - `main.js` intercepts all clicks on DELETE button and does an Ajax call to server to delete all checked contacts 
+  - `main.js` intercepts all clicks on DELETE button and does an Ajax call to server to delete all checked contacts
 
 ## Automated Testing
 
@@ -324,11 +325,11 @@ Hacks needed to deal with PUT and DELETE requests, since browsers only support G
 - Create top-lvel folder `test` in project for tests
   
 ### Server-side JS Testing Versus Client-side JS Testing
- 
+
 - Client-side testing assumes the browser and its DOM are present.
 - **Karma**, launches a test environment, loads a browser and loads environment inside browser
--  **Karma** needs intialisation.
-  
+- **Karma** needs intialisation.
+
 ```[Bash]
 ./node_modules/karma/bin/karma init
 
@@ -395,7 +396,7 @@ yarn run karma
 ```[Bash]
 yarn add --dev karma-chai karma-sinon
 ```
-  
+
 ## Storing Data in MongoDB
 
 ## Auhenticating Users
