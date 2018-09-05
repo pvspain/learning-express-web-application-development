@@ -35,6 +35,7 @@
     - [Server-side JS Testing Versus Client-side JS Testing](#server-side-js-testing-versus-client-side-js-testing)
   - [Storing Data in MongoDB](#storing-data-in-mongodb)
     - [Installing and Configuring MongoDB](#installing-and-configuring-mongodb)
+    - [Wiring Up Mongoose.js](#wiring-up-mongoosejs)
   - [Auhenticating Users](#auhenticating-users)
   - [Deployment Options](#deployment-options)
   - [Final Thoughts](#final-thoughts)
@@ -404,15 +405,36 @@ yarn add --dev karma-chai karma-sinon
 
 - [Install MongoDB][17]
 
-```[Bash]
-sudo apt update
-sudo apt install -y mongodb
-# Get status
-sudo systemctl status mongodb
-# Further validation
-mongo --eval 'db.runCommand({ connectionStatus: 1 })'
-```
+  - Use `apt` package manager on **Ubuntu 18.04**
+  
+    ```[Bash]
+    sudo apt update
+    sudo apt install -y mongodb
+    # Get status
+    sudo systemctl status mongodb
+    # Further validation
+    mongo --eval 'db.runCommand({ connectionStatus: 1 })'
+    ```
 
+  - Or use instructions in Mongo docs for [other Linux distros][19] 
+
+### Wiring Up Mongoose.js
+
+- We need one **Mongo** connection per app
+- Typically, Mongo will be running on a different host
+- We need a dev-only local instance of Mongo
+- Note that Mongo runs asynchronously
+  - In production environment, Mongo may intialise after your app is ready. 
+    - When the connection is live **Mongoose** will fire an `open` event.
+    - Handle this event to be notified. Refer to the [Mongoose docs][20]
+
+    ```[Javascript]
+    var db = mongoose.connection;
+    db.on('error', console.error.bind(console, 'connection error:'));
+    db.once('open', function() {
+      // we're connected!
+    });
+    ```
 
 ## Auhenticating Users
 
@@ -437,3 +459,6 @@ mongo --eval 'db.runCommand({ connectionStatus: 1 })'
 [15]: https://stackoverflow.com/questions/13789618/differences-between-lodash-and-underscore
 [16]: http://www.chaijs.com/
 [17]: https://www.digitalocean.com/community/tutorials/how-to-install-mongodb-on-ubuntu-18-04
+[18]: https://docs.mongodb.com/
+[19]: https://docs.mongodb.com/manual/administration/install-on-linux/
+[20]: https://mongoosejs.com/docs/

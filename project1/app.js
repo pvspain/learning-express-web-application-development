@@ -5,9 +5,19 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var stylus = require('stylus');
 var methodOverride = require('method-override');
+var mongoose = require('mongoose');
 
 var routes = require('./routes/index');
 var contacts = require('./routes/contacts');
+
+var MongoURI =process.env.MONGOURI || 'mongodb://localhost/testdb';
+mongoose.connect(MongoURI, function(err, res) {
+  if (err) {
+    console.log('ERROR connecting to: ' + MongoURI + '.' + err);
+  } else {
+    console.log('MongoDB connected successfully to ' + MongoURI);
+  }
+});
 
 var app = express();
 
