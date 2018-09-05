@@ -26,6 +26,11 @@
       - [Adding bootstrap via `yarn`](#adding-bootstrap-via-yarn)
     - [Displaying Dynamic Data with Jade](#displaying-dynamic-data-with-jade)
   - [Automated Testing](#automated-testing)
+    - [Micro Testing/Unit Testing Versus Full Stack Testing](#micro-testingunit-testing-versus-full-stack-testing)
+      - [Full Stack Testing (Selenium)](#full-stack-testing-selenium)
+      - [Microtesing (Unit testing)](#microtesing-unit-testing)
+      - [TDD/BDD](#tddbdd)
+      - [Test Client](#test-client)
   - [Storing Data in MongoDB](#storing-data-in-mongodb)
   - [Auhenticating Users](#auhenticating-users)
   - [Deployment Options](#deployment-options)
@@ -260,6 +265,46 @@ Hacks needed to deal with PUT and DELETE requests, since browsers only support G
 
 ## Automated Testing
 
+### Micro Testing/Unit Testing Versus Full Stack Testing
+
+#### Full Stack Testing (Selenium)
+
+- Headless web browser
+- Comprehensive - It tests
+  - CSS
+  - Client-side JavaScript
+  - HTML
+  - Databases
+  - Infrastructure
+- Slow (10 secs to multiple minutes)
+- Others: Protractor, SST (Python)
+
+#### Microtesing (Unit testing)
+
+- Tests a small piece of code
+  - i.e. one function or module)
+- Isolated from the rest of the app
+- Very fast
+  
+#### TDD/BDD
+
+- Test Driven Development
+  - Write tests first
+  - Run the tests to be sure they fail
+  - Write just enough code to make the tests pass
+  - Refactor to improve code quality (with tests passing)
+- Behaviour Driven Devlopment
+  - Same pilosophy as TDD
+  - More human-readable test format
+- Both are compatible with the tools we'll be using
+
+#### Test Client
+
+- A tool halfway between the micro-test and the full-stack test
+- In our app, it would test the full server side stack, including middleware
+- It does not launch the app, instead merely runs the code in the same way Nodejs would, but with some hooks for testing
+- It won't render the app and send it to a browser, but the app would not know the difference
+  
 ## Storing Data in MongoDB
 
 ## Auhenticating Users
