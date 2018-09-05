@@ -1,6 +1,8 @@
 var chai = require('chai');
 var assert = chai.assert;
 var jade = require('jade');
+var request = require('supertest');
+var app = require('../app');
 
 describe('First test suite', function () {
   x = 0;
@@ -26,6 +28,11 @@ describe('First test suite', function () {
     var expected = '<div id="container"></div>';
     var result = jade.render(template);
     assert.equal(expected, result);
+  });
+
+  it('Supertest test', function(done) {
+    request(app).get('/contacts')
+    .expect(200, done);
   });
 
 })
