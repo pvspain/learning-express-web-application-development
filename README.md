@@ -37,6 +37,7 @@
     - [Installing and Configuring MongoDB](#installing-and-configuring-mongodb)
     - [Wiring Up Mongoose.js](#wiring-up-mongoosejs)
     - [Creating Our Models](#creating-our-models)
+    - [Differences between MongoDB and a Relational Database](#differences-between-mongodb-and-a-relational-database)
   - [Auhenticating Users](#auhenticating-users)
   - [Deployment Options](#deployment-options)
   - [Final Thoughts](#final-thoughts)
@@ -440,6 +441,7 @@ yarn add --dev karma-chai karma-sinon
 ### Creating Our Models
 
 - **MongoDB** is a *document* database.
+  - Other examples: CouchDB, Cassandra
 - **Mongoose** allows us to define **schemas**.
 - Schemas:
   - have helper functions to access data
@@ -449,6 +451,18 @@ yarn add --dev karma-chai karma-sinon
     ```
   - one schema per file
   - file name matches schema
+
+### Differences between MongoDB and a Relational Database
+
+-  Non-relational databases
+- **MongoDB** is a *document* database.
+  - Other examples: CouchDB, Cassandra
+- Key/Value stores
+  - Examples: Redis, GDBM, Memcached
+- Graph databases
+  - Example: Neo4j
+- Column-oriented databases
+  - Example: HBase
 
 ## Auhenticating Users
 
