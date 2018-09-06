@@ -46,7 +46,7 @@
 
 This course is a few years old now (December 2014)
 
-I am using current version of **NodeJS** and [Yarn][2] package manager instead of **npm**. My development environment is Ubuntu 16.04.5 LTS (Linux).
+I am using current version of **NodeJS** and [Yarn][2] package manager instead of **npm**. My development environment is Ubuntu 18.04.1 LTS (Linux).
 
 The following sections are my notes for the PacktPub video course. The structure below maps directly to the chapter structure of the course. Missing sections from the PacktPub structure indicate I didn't watch or didn't take any notes for the chapter.
 
