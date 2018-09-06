@@ -149,7 +149,7 @@ Initialise project `.gitignore` from NodeJS [template][5]
     ```[Bash]
     yarn add express-handlebars
     ```
-    - change view engine ienginesenginesn `app.js`
+    - change view engine in `app.js`
 - more popular CSS pre-processors than Stylus now.
   - Sass
     - `compass` node module
