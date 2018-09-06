@@ -331,7 +331,7 @@ Hacks needed to deal with PUT and DELETE requests, since browsers only support G
 ### Server-side JS Testing Versus Client-side JS Testing
 
 - Client-side testing assumes the browser and its DOM are present.
-- **Karma**, launches a test environment, loads a browser and loads environment inside browser
+- **Karma** launches a test environment, loads a browser and loads environment inside browser
 - **Karma** needs intialisation.
 
 ```[Bash]
@@ -373,7 +373,7 @@ Press tab to list possible options.
 Config file generated at "/home/paul/git/github/pvspain/learning-express-web-application-development/project1/karma.conf.js".
 ```
 
-- Create `browser-tests` folder anr run **Karma**
+- Create `browser-tests` folder and run **Karma**
 
 ```[Bash]
 mkdir browser-tests
