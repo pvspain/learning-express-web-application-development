@@ -173,7 +173,7 @@ Initialise project `.gitignore` from NodeJS [template][5]
 - Database
   - Relational: MySQL
   - Key-value: Redis
-  - Non-releational: Mongo (Mongoose.js)
+  - Non-relational: Mongo (Mongoose.js)
 - Testing
   - Runner: Karma
   - Framework: Mocha.js
