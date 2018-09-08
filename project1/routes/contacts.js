@@ -9,27 +9,26 @@ router.get('/', function (req, res) {
     })
 });
 
+router.post('/', function (req, res) {
+    new Contact({
+        name: req.body.fullname,
+        job: req.body.job,
+        nickname: req.body.nickname,
+        email: req.body.email
+    }).save(function (err, contact, count) {
+        if (err) {
+            res.status(400).send('Error saving new contact: ' + err);
+        } else {
+            res.send("New contact created");
+            // res.redirect('/');
+        }
+    })
+});
+
 router.route('/add')
     .get(function (req, res) {
         res.render('add', { contact: {} });
     })
-
-    .post(function (req, res) {
-        new Contact({
-            name: req.body.fullname,
-            job: req.body.job,
-            nickname: req.body.nickname,
-            email: req.body.email
-        }).save(function (err, contact, count) {
-            if (err) {
-                res.status(400).send('Error saving new contact: ' + err);
-            } else {
-                res.send("New contact created");
-                // res.redirect('/contacts');
-            }
-        })
-    });
-
 
 
 router.route('/:contact_id')
@@ -46,8 +45,20 @@ router.route('/:contact_id')
         res.render('edit', { contact: contact, moment: moment });
     })
 
-    .put(function (req, res, next) {
+    .post(function (req, res, next) {
+        contact.notes.push({
+            note: req.body.notes
+        });
+        contact.save(function (err, contact, count) {
+            if (err) {
+                res.status(400).send('Error adding note: ' + err);
+            } else {
+                res.send('Note added!');
+            }
+        });
+    })
 
+    .put(function (req, res, next) {
         contact.name = req.body.fullname;
         contact.job = req.body.job;
         contact.nickname = req.body.nickname;
@@ -61,20 +72,6 @@ router.route('/:contact_id')
             }
         });
     })
-
-    .post(function (req, re, next) {
-        contact.notes.push({
-            note: req.body.notes
-        });
-        contact.save(function (err, contact, count) {
-            if (err) {
-                res.status(400).send('Error adding note: ' + err);
-            } else {
-                res.send('Note added!');
-            }
-        });
-    })
-
 
     .delete(function (req, res) {
         contact.remove(function (err, contact) {

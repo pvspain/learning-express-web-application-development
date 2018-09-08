@@ -419,7 +419,7 @@ yarn add --dev karma-chai karma-sinon
     mongo --eval 'db.runCommand({ connectionStatus: 1 })'
     ```
 
-  - Or use instructions in Mongo docs for [other Linux distros][19] 
+  - Or use instructions in Mongo docs for [other Linux distros][19]
 
 ### Wiring Up Mongoose.js
 
@@ -427,7 +427,7 @@ yarn add --dev karma-chai karma-sinon
 - Typically, Mongo will be running on a different host
 - We need a dev-only local instance of Mongo
 - Note that Mongo runs asynchronously
-  - In production environment, Mongo may intialise after your app is ready. 
+  - In production environment, Mongo may intialise after your app is ready.
     - When the connection is live **Mongoose** will fire an `open` event.
     - Handle this event to be notified. Refer to the [Mongoose docs][20]
 
@@ -455,7 +455,7 @@ yarn add --dev karma-chai karma-sinon
 
 ### Differences between MongoDB and a Relational Database
 
--  Non-relational databases
+- Non-relational databases
 - **MongoDB** is a *document* database.
   - Other examples: CouchDB, Cassandra
 - Key/Value stores
@@ -467,7 +467,11 @@ yarn add --dev karma-chai karma-sinon
 
 ### Collecting Data
 
+- Allow plain-english formatting fornote timestamps - use `moment` module
 
+```[Bash]
+yarn add moment
+```
 
 ## Auhenticating Users
 
