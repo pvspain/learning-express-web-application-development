@@ -1,77 +1,43 @@
 var express = require('express');
 var router = express.Router();
 var _ = require('lodash');
+var Contact = require('../models/contacts');
 
-var contacts = [
-    {
-        id: 1,
-        name: 'Joe Smith',
-        job: 'Plumber',
-        nickname: 'Joe',
-        email: 'joe@gmail.com'
-    },
-    {
-        id: 2,
-        name: 'Carla Ricci',
-        job: 'Principal Division Producer',
-        nickname: 'Carla',
-        email: 'cricci@gmail.com'
-    },
-    {
-        id: 3,
-        name: 'Dragan Burns',
-        job: 'Senior Factors Producer',
-        nickname: 'Drago',
-        email: 'itburns@outlook.com'
-    }
-]
-
-function lookupContact(contact_id) {
-    return _.find(contacts, function (c) {
-        return c.id == parseInt(contact_id);
-    });
-}
-
-function findMaxId() {
-    return _.max(contacts, function (contact) {
-        return contact.id;
-    });
-}
 
 router.get('/', function (req, res) {
-    res.render('list', { contacts: contacts });
+    Contact.find(function (err, contacts, count) {
+        res.render('list', { contacts: contacts });
+    })
 });
 
-router.post('/', function (req, res) {
-    var new_contact_id = findMaxId() + 1;
-    var new_contact = {
-        id: new_contact_id,
-        name: req.body.fullname,
-        job: req.body.job,
-        nickname: req.body.nickname,
-        email: req.body.email
-    }
+router.route('/add')
+    .get(function (req, res) {
+        res.render('add', { contact: {} });
+    })
 
-    contacts.push(new_contact);
-
-    res.send('New contact created with id: ' + new_contact.id);
-    // res.redirect('/contacts/');
-});
-
-router.get('/add', function (req, res) {
-    res.render('add', { contact: {} });
-});
+    .post(function (req, res) {
+        new Contact({
+            name: req.body.fullname,
+            job: req.body.job,
+            nickname: req.body.nickname,
+            email: req.body.email
+        }).save(function (errr, contact, count) {
+            if (err) {
+                res.status(400).send('Error saving new contact: ' + err);
+            } else {
+                res.send('New contact created');
+                // res.redirect('/contacts');
+            }
+        });
+    });
 
 router.route('/:contact_id')
     .all(function (req, res, next) {
         contact_id = req.params.contact_id;
-        contact = lookupContact(contact_id);
-
         next();
     })
 
     .get(function (req, res) {
-        res.render('edit', { contact: contact });
     })
 
     .post(function (req, res) {

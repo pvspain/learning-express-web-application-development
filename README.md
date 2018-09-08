@@ -38,6 +38,7 @@
     - [Wiring Up Mongoose.js](#wiring-up-mongoosejs)
     - [Creating Our Models](#creating-our-models)
     - [Differences between MongoDB and a Relational Database](#differences-between-mongodb-and-a-relational-database)
+    - [Collecting Data](#collecting-data)
   - [Auhenticating Users](#auhenticating-users)
   - [Deployment Options](#deployment-options)
   - [Final Thoughts](#final-thoughts)
@@ -463,6 +464,10 @@ yarn add --dev karma-chai karma-sinon
   - Example: Neo4j
 - Column-oriented databases
   - Example: HBase
+
+### Collecting Data
+
+
 
 ## Auhenticating Users
 
