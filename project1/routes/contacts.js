@@ -1,6 +1,6 @@
 var express = require('express');
 var router = express.Router();
-// var moment = require('moment');
+var moment = require('moment');
 var Contact = require('../models/contacts');
 
 router.get('/', function (req, res) {
@@ -9,25 +9,28 @@ router.get('/', function (req, res) {
     })
 });
 
-router.post('/', function (req, res) {
-    new Contact({
-        name: req.body.fullname,
-        job: req.body.job,
-        nickname: req.body.nickname,
-        email: req.body.email
-    }).save(function (err, contact, count) {
-        if (err) {
-            res.status(400).send('Error saving new contact: ' + err);
-        } else {
-            // res.send("New contact created");
-            res.redirect('/contacts');
-        }
+router.route('/add')
+    .get(function (req, res) {
+        res.render('add', { contact: {} });
     })
-});
 
-router.get('/add', function (req, res) {
-    res.render('add', { contact: {} });
-});
+    .post(function (req, res) {
+        new Contact({
+            name: req.body.fullname,
+            job: req.body.job,
+            nickname: req.body.nickname,
+            email: req.body.email
+        }).save(function (err, contact, count) {
+            if (err) {
+                res.status(400).send('Error saving new contact: ' + err);
+            } else {
+                res.send("New contact created");
+                // res.redirect('/contacts');
+            }
+        })
+    });
+
+
 
 router.route('/:contact_id')
     .all(function (req, res, next) {
@@ -39,25 +42,12 @@ router.route('/:contact_id')
         });
     })
 
-    .get(function (req, res) {
+    .get(function (req, res, next) {
         res.render('edit', { contact: contact, moment: moment });
     })
 
-    .post(function (req, res) {
-        contact.notes.push({
-            note: req.body.notes
-        });
+    .put(function (req, res, next) {
 
-        contact.save(function (err, contact, count) {
-            if (err) {
-                res.status(400).send('Error adding note: ' + err);
-            } else {
-                res.send('Note added!');
-            }
-        });
-    })
-
-    .put(function (req, res) {
         contact.name = req.body.fullname;
         contact.job = req.body.job;
         contact.nickname = req.body.nickname;
@@ -71,6 +61,20 @@ router.route('/:contact_id')
             }
         });
     })
+
+    .post(function (req, re, next) {
+        contact.notes.push({
+            note: req.body.notes
+        });
+        contact.save(function (err, contact, count) {
+            if (err) {
+                res.status(400).send('Error adding note: ' + err);
+            } else {
+                res.send('Note added!');
+            }
+        });
+    })
+
 
     .delete(function (req, res) {
         contact.remove(function (err, contact) {
