@@ -1,8 +1,7 @@
 var express = require('express');
 var router = express.Router();
-var _ = require('lodash');
+// var moment = require('moment');
 var Contact = require('../models/contacts');
-
 
 router.get('/', function (req, res) {
     Contact.find(function (err, contacts, count) {
@@ -10,48 +9,52 @@ router.get('/', function (req, res) {
     })
 });
 
-router.route('/add')
-    .get(function (req, res) {
-        res.render('add', { contact: {} });
+router.post('/', function (req, res) {
+    new Contact({
+        name: req.body.fullname,
+        job: req.body.job,
+        nickname: req.body.nickname,
+        email: req.body.email
+    }).save(function (err, contact, count) {
+        if (err) {
+            res.status(400).send('Error saving new contact: ' + err);
+        } else {
+            // res.send("New contact created");
+            res.redirect('/contacts');
+        }
     })
+});
 
-    .post(function (req, res) {
-        new Contact({
-            name: req.body.fullname,
-            job: req.body.job,
-            nickname: req.body.nickname,
-            email: req.body.email
-        }).save(function (err, contact, count) {
-            if (err) {
-                res.status(400).send('Error saving new contact: ' + err);
-            } else {
-                res.send('New contact created');
-                // res.redirect('/contacts');
-            }
-        });
-    });
+router.get('/add', function (req, res) {
+    res.render('add', { contact: {} });
+});
 
 router.route('/:contact_id')
     .all(function (req, res, next) {
         contact_id = req.params.contact_id;
-        next();
+        contact = {};
+        Contact.findById(contact_id, function (err, c) {
+            contact = c;
+            next();
+        });
     })
 
     .get(function (req, res) {
+        res.render('edit', { contact: contact, moment: moment });
     })
 
     .post(function (req, res) {
-        if (!contact.notes) {
-            contact.notes = [];
-        }
-
         contact.notes.push({
-            created: Date(),
             note: req.body.notes
         });
 
-        res.send('Created new note for contact id ' + contact_id);
-        // res.redirect('/contact/'+contact_id);
+        contact.save(function (err, contact, count) {
+            if (err) {
+                res.status(400).send('Error adding note: ' + err);
+            } else {
+                res.send('Note added!');
+            }
+        });
     })
 
     .put(function (req, res) {
@@ -60,12 +63,23 @@ router.route('/:contact_id')
         contact.nickname = req.body.nickname;
         contact.email = req.body.email;
 
-        res.send('Update succeeded for contact id: ' + contact_id);
-        // res.render('/contacts/');
+        contact.save(function (err, contact, count) {
+            if (err) {
+                res.status(400).send('Error saving contact: ' + err);
+            } else {
+                res.send('Contact saved');
+            }
+        });
     })
 
     .delete(function (req, res) {
-        res.send('Delete for contact ' + contact_id);
+        contact.remove(function (err, contact) {
+            if (err) {
+                res.status(400).send("Error removing contact: " + err);
+            } else {
+                res.send('Contact removed');
+            }
+        });
     });
 
 module.exports = router;
