@@ -21,7 +21,7 @@ router.route('/add')
             job: req.body.job,
             nickname: req.body.nickname,
             email: req.body.email
-        }).save(function (errr, contact, count) {
+        }).save(function (err, contact, count) {
             if (err) {
                 res.status(400).send('Error saving new contact: ' + err);
             } else {
