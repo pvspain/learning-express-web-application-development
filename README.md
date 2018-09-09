@@ -40,6 +40,7 @@
     - [Differences between MongoDB and a Relational Database](#differences-between-mongodb-and-a-relational-database)
     - [Collecting Data](#collecting-data)
   - [Auhenticating Users](#auhenticating-users)
+    - [Adding Passport.js Authentication](#adding-passportjs-authentication)
   - [Deployment Options](#deployment-options)
   - [Final Thoughts](#final-thoughts)
   
@@ -47,7 +48,7 @@
 
 This course is a few years old now (December 2014)
 
-I am using current version of **NodeJS** and [Yarn][2] package manager instead of **npm**. My development environment is Ubuntu 18.04.1 LTS (Linux).
+I am using **NodeJS** (v8.11.4) and [Yarn][2] (v1.9.4) package manager instead of **npm**. My development environment is Ubuntu 18.04.1 LTS (Linux).
 
 The following sections are my notes for the PacktPub video course. The structure below maps directly to the chapter structure of the course. Missing sections from the PacktPub structure indicate I didn't watch or didn't take any notes for the chapter.
 
@@ -474,6 +475,12 @@ yarn add moment
 ```
 
 ## Auhenticating Users
+
+### Adding Passport.js Authentication
+
+```[Bash]
+yarn add passport-local passport-local-mongoose express-session
+```
 
 ## Deployment Options
 

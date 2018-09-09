@@ -3,6 +3,13 @@ var router = express.Router();
 var moment = require('moment');
 var Contact = require('../models/contacts');
 
+router.use(function(req, res, next) {
+    if (!req.user) {
+        res.redirect('/');
+    }
+    next();
+});
+
 router.get('/', function (req, res) {
     Contact.find(function (err, contacts, count) {
         res.render('list', { contacts: contacts });
