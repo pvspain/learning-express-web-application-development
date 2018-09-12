@@ -42,6 +42,7 @@
   - [Auhenticating Users](#auhenticating-users)
     - [Adding Passport.js Authentication](#adding-passportjs-authentication)
     - [Understanding Sessions](#understanding-sessions)
+    - [Using Facebook or Twitter for Authentication](#using-facebook-or-twitter-for-authentication)
   - [Deployment Options](#deployment-options)
   - [Final Thoughts](#final-thoughts)
   
@@ -507,12 +508,23 @@ yarn add passport-local passport-local-mongoose express-session
 
 - `express-session` provides middleware that adds session informaton to every request
 - Add *persistent* sessions, using **MongoStore**
-  ```
+
+  ```[Bash]
   yarn add connect-mongo
   ```
+
   - Any serialisable object can be added to MongoStore
     - persisting a db connection is a bad idea!
   - A great alternative is Redis store if a Redis instance is available
+
+### Using Facebook or Twitter for Authentication
+
+- Get API keys from [Twitter][22] and [Facebook][23]
+- Add Node modules
+  
+  ```[Bash]
+  yarn add passport-facebook passport-twitter
+  ```
 
 ## Deployment Options
 
@@ -539,3 +551,6 @@ yarn add passport-local passport-local-mongoose express-session
 [19]: https://docs.mongodb.com/manual/administration/install-on-linux/
 [20]: https://mongoosejs.com/docs/
 [21]: https://docs.mongodb.com/manual/reference/method/db.dropDatabase/
+[22]: https://apps.twitter.com/
+[23]: https://developers.facebook.com
+

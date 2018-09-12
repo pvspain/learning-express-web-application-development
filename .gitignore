@@ -74,3 +74,6 @@ typings/
 
 # VSCode files
 *.code-workspace
+
+# Sensitive data
+.env

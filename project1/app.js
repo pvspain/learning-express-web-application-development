@@ -10,12 +10,15 @@ var bodyParser= require('body-parser');
 var mongoose = require('mongoose');
 var MongoStore = require('connect-mongo')(session);
 var passport = require('passport');
-var LocalStrategy = require('passport-local').Strategy;
+var FacebookStrategy = require('passport-facebook').Strategy;
+var TwitterStrategy = require('passport-twitter').Strategy;
+var findOrCreateProfile = require('./findOrCreateProfile');
+
 var routes = require('./routes/index');
 var contacts = require('./routes/contacts');
 var auth = require('./routes/auth');
 
-var MongoURI =process.env.MONGOURI || 'mongodb://localhost/testdb';
+var MongoURI = process.env.MONGO_URI || 'mongodb://localhost/testdb';
 mongoose.connect(MongoURI, function(err, res) {
     if(err) {
         console.log('ERROR connecting to: ' + MongoURI + '. ' + err);
@@ -49,7 +52,27 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 var Account = require('./models/account');
-passport.use(Account.createStrategy());
+// passport.use(Account.createStrategy());
+
+passport.use(new TwitterStrategy({
+    consumerKey: '...',
+    consumerSecret: '...',
+    callbackURL: "http://localhost:3000/auth/twitter/callback"
+  },
+  function(token, tokenSecret, profile, done) {
+    findOrCreateProfile({twitterId: profile.id}, profile, done);
+  }
+));
+
+passport.use(new FacebookStrategy({
+    clientID: '...',
+    clientSecret: '...',
+    callbackURL: "http://localhost:3000/auth/facebook/callback"
+  },
+  function(accessToken, refreshToken, profile, done) {
+    findOrCreateProfile({facebookId: profile.id}, profile, done);
+  }
+));
 
 passport.serializeUser(Account.serializeUser());
 passport.deserializeUser(Account.deserializeUser());
