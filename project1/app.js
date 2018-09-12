@@ -6,20 +6,22 @@ var logger = require('morgan');
 var stylus = require('stylus');
 var methodOverride = require('method-override');
 var session = require('express-session');
+var bodyParser= require('body-parser');
 var mongoose = require('mongoose');
+var MongoStore = require('connect-mongo')(session);
 var passport = require('passport');
-var LocalStrategy = require('passport-strategy').Strategy;
+var LocalStrategy = require('passport-local').Strategy;
 var routes = require('./routes/index');
 var contacts = require('./routes/contacts');
 var auth = require('./routes/auth');
 
 var MongoURI =process.env.MONGOURI || 'mongodb://localhost/testdb';
 mongoose.connect(MongoURI, function(err, res) {
-  if (err) {
-    console.log('ERROR connecting to: ' + MongoURI + '.' + err);
-  } else {
-    console.log('MongoDB connected successfully to ' + MongoURI);
-  }
+    if(err) {
+        console.log('ERROR connecting to: ' + MongoURI + '. ' + err);
+    } else {
+        console.log('MongoDB connected successfully to ' + MongoURI);
+    }
 });
 
 var app = express();
@@ -29,18 +31,20 @@ app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
 
 app.use(logger('dev'));
-app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }));
 app.use(methodOverride('_method'));
 app.use(cookieParser());
 app.use(session({
-  secret: 'learn express',
-  resave: true,
-  saveUninitialized: false
+    store: new MongoStore({url: MongoURI}), 
+    secret: 'learn node', 
+    resave: true, 
+    saveUninitialized: false
 }));
 app.use(stylus.middleware(path.join(__dirname, 'public')));
 app.use(express.static(path.join(__dirname, 'public')));
 
+// Passport configuration
 app.use(passport.initialize());
 app.use(passport.session());
 

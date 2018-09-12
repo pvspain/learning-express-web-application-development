@@ -41,6 +41,7 @@
     - [Collecting Data](#collecting-data)
   - [Auhenticating Users](#auhenticating-users)
     - [Adding Passport.js Authentication](#adding-passportjs-authentication)
+    - [Understanding Sessions](#understanding-sessions)
   - [Deployment Options](#deployment-options)
   - [Final Thoughts](#final-thoughts)
   
@@ -476,11 +477,42 @@ yarn add moment
 
 ## Auhenticating Users
 
+- [Dropping][21] a Mongo db
+
+```
+$ mongo
+> show dbs
+admin   0.000GB
+config  0.000GB
+local   0.000GB
+testdb  0.000GB
+> use testdb
+switched to db testdb
+> db.dropDatabase()
+{ "dropped" : "testdb", "ok" : 1 }
+> show dbs
+admin   0.000GB
+config  0.000GB
+local   0.000GB
+>
+```
+
 ### Adding Passport.js Authentication
 
 ```[Bash]
 yarn add passport-local passport-local-mongoose express-session
 ```
+
+### Understanding Sessions
+
+- `express-session` provides middleware that adds session informaton to every request
+- Add *persistent* sessions, using **MongoStore**
+  ```
+  yarn add connect-mongo
+  ```
+  - Any serialisable object can be added to MongoStore
+    - persisting a db connection is a bad idea!
+  - A great alternative is Redis store if a Redis instance is available
 
 ## Deployment Options
 
@@ -506,3 +538,4 @@ yarn add passport-local passport-local-mongoose express-session
 [18]: https://docs.mongodb.com/
 [19]: https://docs.mongodb.com/manual/administration/install-on-linux/
 [20]: https://mongoosejs.com/docs/
+[21]: https://docs.mongodb.com/manual/reference/method/db.dropDatabase/
