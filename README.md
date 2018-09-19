@@ -44,6 +44,7 @@
     - [Understanding Sessions](#understanding-sessions)
     - [Using Facebook or Twitter for Authentication](#using-facebook-or-twitter-for-authentication)
   - [Deployment Options](#deployment-options)
+    - [Deploying Your Application](#deploying-your-application)
   - [Final Thoughts](#final-thoughts)
   
 ## Introduction
@@ -528,6 +529,40 @@ yarn add passport-local passport-local-mongoose express-session
 
 ## Deployment Options
 
+### Deploying Your Application
+
+- NodeJS default mode is `dev`
+- Explicitly set to `production` via environment variable
+
+```[Bash]
+NODE_ENV = production
+```
+
+- Install _only_ production packages
+
+```[Bash]
+yarn install --production
+yarn install --prod
+```
+
+- Determine globally installed packages
+
+```[Bash]
+yarn global list
+npm ls -g --depth=0
+```
+
+- Minify only assets in `public` folder
+  - e.g. [Grunt][24] or [Gulp][25] have `uglify` packages to minify styles and JavaScript
+  - All other assets remain server-side
+- Serve `public` assets using a webserver, not NodeJS
+- Get [professional][26] [assistance][27] for MongoDB in heavy-traffic scenarios
+- Measure performance (Selenium, ProtractorJS, jMeter)
+  - `mongoose-cache` for common response caching
+  - Redis for sessions
+- Avoid global variables
+- PaaS NodeJS hosting - Heroku, Azure
+
 ## Final Thoughts
 
 [1]: https://www.packtpub.com/mapt/video/video/9781783989881
@@ -553,4 +588,7 @@ yarn add passport-local passport-local-mongoose express-session
 [21]: https://docs.mongodb.com/manual/reference/method/db.dropDatabase/
 [22]: https://apps.twitter.com/
 [23]: https://developers.facebook.com
-
+[24]: https://gruntjs.com/
+[25]: https://gulpjs.com/
+[26]: https://mlab.com/
+[27]: https://www.compose.com/
