@@ -578,6 +578,14 @@ heroku create
 git push heroku master
 heroku ps:scale web=1
 heroku open
+# on error...
+heroku logs --tail
+# add mongodb support
+heroku addons:create mongolab:sandbox
+# Use heroku addons:docs mongolab to view documentation
+heroku addons:docs mongolab
+# Use the heroku config command to view your app’s config variables.
+heroku config:get MONGODB_URI
 ```
 
 ## Final Thoughts
