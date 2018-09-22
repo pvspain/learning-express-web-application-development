@@ -45,6 +45,7 @@
     - [Using Facebook or Twitter for Authentication](#using-facebook-or-twitter-for-authentication)
   - [Deployment Options](#deployment-options)
     - [Deploying Your Application](#deploying-your-application)
+    - [Deploying Your App to the Cloud via Heroku](#deploying-your-app-to-the-cloud-via-heroku)
   - [Final Thoughts](#final-thoughts)
   
 ## Introduction
@@ -52,7 +53,7 @@
 This course is a few years old now (December 2014)
 
 I am using **NodeJS** (v8.11.4) and [Yarn][2] (v1.9.4) package manager instead of **npm**. My development environment is Ubuntu 18.04.1 LTS (Linux).
-
+gi
 The following sections are my notes for the PacktPub video course. The structure below maps directly to the chapter structure of the course. Missing sections from the PacktPub structure indicate I didn't watch or didn't take any notes for the chapter.
 
 ## Getting Started
@@ -563,6 +564,22 @@ npm ls -g --depth=0
 - Avoid global variables
 - PaaS NodeJS hosting - Heroku, Azure
 
+### Deploying Your App to the Cloud via Heroku
+
+- Platform as a Service (PaaS)
+- [Heroku][28]
+- Installing Heroku CLI
+
+```[Bash]
+sudo snap install heroku --classic
+heroku login
+cd /path/to/nodejs/app/root/dir
+heroku create
+git push heroku master
+heroku ps:scale web=1
+heroku open
+```
+
 ## Final Thoughts
 
 [1]: https://www.packtpub.com/mapt/video/video/9781783989881
@@ -592,3 +609,4 @@ npm ls -g --depth=0
 [25]: https://gulpjs.com/
 [26]: https://mlab.com/
 [27]: https://www.compose.com/
+[28]: https://www.heroku.com/

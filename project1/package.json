@@ -2,6 +2,9 @@
   "name": "project1",
   "version": "0.0.0",
   "private": true,
+  "engines": {
+    "node": "8.11.x"
+  },
   "scripts": {
     "start": "node node_modules/.bin/supervisor bin/www",
     "test": "./node_modules/.bin/mocha -u tdd",
