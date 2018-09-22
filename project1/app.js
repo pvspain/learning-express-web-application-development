@@ -17,7 +17,7 @@ var findOrCreateProfile = require('./findOrCreateProfile');
 var routes = require('./routes/index');
 var contacts = require('./routes/contacts');
 var auth = require('./routes/auth');
-
+var CallbackDomain = process.env.CALLBACK_DOMAIN || 'http://localhost:3000';
 var MongoURI = process.env.MONGODB_URI || 'mongodb://localhost/testdb';
 mongoose.connect(MongoURI, function(err, res) {
     if(err) {
@@ -57,7 +57,7 @@ var Account = require('./models/account');
 passport.use(new TwitterStrategy({
     consumerKey: '...',
     consumerSecret: '...',
-    callbackURL: "http://localhost:3000/auth/twitter/callback"
+    callbackURL: CallbackDomain + "/auth/twitter/callback"
   },
   function(token, tokenSecret, profile, done) {
     findOrCreateProfile({twitterId: profile.id}, profile, done);
@@ -67,7 +67,7 @@ passport.use(new TwitterStrategy({
 passport.use(new FacebookStrategy({
     clientID: '...',
     clientSecret: '...',
-    callbackURL: "http://localhost:3000/auth/facebook/callback"
+    callbackURL: CallbackDomain + "/auth/facebook/callback"
   },
   function(accessToken, refreshToken, profile, done) {
     findOrCreateProfile({facebookId: profile.id}, profile, done);

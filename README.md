@@ -586,6 +586,8 @@ heroku addons:create mongolab:sandbox
 heroku addons:docs mongolab
 # Use the heroku config command to view your app’s config variables.
 heroku config:get MONGODB_URI
+# adjust OAuth callbacks for Heroku URL
+heroku config:set CALLBACK_DOMAIN=https://guarded-crag-87505.herokuapp.com
 ```
 
 ## Final Thoughts
