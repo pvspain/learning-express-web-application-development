@@ -46,6 +46,7 @@
   - [Deployment Options](#deployment-options)
     - [Deploying Your Application](#deploying-your-application)
     - [Deploying Your App to the Cloud via Heroku](#deploying-your-app-to-the-cloud-via-heroku)
+    - [Considerations for Deploying Your App to Traditional Servers](#considerations-for-deploying-your-app-to-traditional-servers)
   - [Final Thoughts](#final-thoughts)
   
 ## Introduction
@@ -590,6 +591,21 @@ heroku config:get MONGODB_URI
 heroku config:set CALLBACK_DOMAIN=https://guarded-crag-87505.herokuapp.com
 ```
 
+### Considerations for Deploying Your App to Traditional Servers
+
+- NodeJS runs as a single process, separate from the web server.
+- Applications to run your nodejs app behind a commodity webserver such as Apache or Nginx.
+  - [Forever][30], [Foreman][31]
+- Common to run NodeJS app as a dedicated user with restricted permissions.
+- Start application automatically as a service
+  - Ubuntu: [upstart][32]
+  - RedHat or Fedora: [upstart][32] or `systemd`
+  - Debian: `system init`
+  - Windows: `node-windows`
+- Do not expose NodeJS app directly to internet
+  - Use non-privileged port above 1024, such as 3000 or 8000.
+  - Redirect requests from commodity webserver.
+
 ## Final Thoughts
 
 [1]: https://www.packtpub.com/mapt/video/video/9781783989881
@@ -620,3 +636,6 @@ heroku config:set CALLBACK_DOMAIN=https://guarded-crag-87505.herokuapp.com
 [26]: https://mlab.com/
 [27]: https://www.compose.com/
 [28]: https://www.heroku.com/
+[30]: https://www.npmjs.com/package/forever
+[31]: https://www.npmjs.com/package/foreman
+[32]: http://upstart.ubuntu.com/cookbook/
