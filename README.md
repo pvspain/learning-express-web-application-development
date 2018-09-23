@@ -48,6 +48,7 @@
     - [Deploying Your App to the Cloud via Heroku](#deploying-your-app-to-the-cloud-via-heroku)
     - [Considerations for Deploying Your App to Traditional Servers](#considerations-for-deploying-your-app-to-traditional-servers)
   - [Final Thoughts](#final-thoughts)
+    - [Custom Modules](#custom-modules)
   
 ## Introduction
 
@@ -608,6 +609,24 @@ heroku config:set CALLBACK_DOMAIN=https://guarded-crag-87505.herokuapp.com
 
 ## Final Thoughts
 
+### Custom Modules
+
+- Use `module.exports` to expose functionality
+
+[Sails.js][33]
+
+- Similar to Ruby On Rails - written in Javascript
+- Blueprints for auto-generation of REST APIs
+- Database adapter called `Waterline`
+
+
+[Socket.io][34]
+
+- Bi-directional client/server communication
+  - avoids client-polling
+  - Uses WebSockets if browser supports
+  - Drops back to long-polling if not supported
+
 [1]: https://www.packtpub.com/mapt/video/video/9781783989881
 [2]: https://yarnpkg.com/en/
 [3]: https://yarnpkg.com/en/docs/install#debian-stable
@@ -639,3 +658,5 @@ heroku config:set CALLBACK_DOMAIN=https://guarded-crag-87505.herokuapp.com
 [30]: https://www.npmjs.com/package/forever
 [31]: https://www.npmjs.com/package/foreman
 [32]: http://upstart.ubuntu.com/cookbook/
+[33]: https://sailsjs.com/
+[34]: https://socket.io/
